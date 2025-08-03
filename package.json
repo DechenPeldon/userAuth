@@ -1,16 +1,18 @@
 {
-  "name": "userauth",
+  "name": "task-management-system",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A modern task management system with beautiful UI",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "dev": "nodemon server.js",
+    "setup-db": "node setup-database.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DechenPeldon/userAuth.git"
   },
-  "keywords": [],
+  "keywords": ["task-management", "productivity", "web-app"],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -25,7 +27,7 @@
     "express": "^5.1.0",
     "express-session": "^1.18.1",
     "jsonwebtoken": "^9.0.2",
-    "nodemailer": "^7.0.3",
+    "pg": "^8.11.3",
     "pg-promise": "^11.14.0"
   },
   "devDependencies": {

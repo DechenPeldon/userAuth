@@ -1,7 +1,6 @@
 const db = require('../config/db');
 
-
-//create new user tabke if not exists
+// Create new user table if not exists
 const createUserTable = async () => {
     try {
         await db.none(`
@@ -11,18 +10,14 @@ const createUserTable = async () => {
                 email VARCHAR(100) UNIQUE NOT NULL,
                 password VARCHAR(255) NOT NULL,
                 role VARCHAR(10) DEFAULT 'user',
-                is_verified BOOLEAN DEFAULT false,
-                verification_token TEXT,
-                reset_token TEXT,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         `);
-        console.log('Users table created!!!');
+        console.log('Users table created successfully!');
     } catch (error) {
         console.error('Error creating users table:', error);
     }
 };
-
 
 module.exports = {
     createUserTable

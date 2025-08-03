@@ -1,75 +1,398 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Data Science Year 3</title>
-  <link rel="stylesheet" href="/css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow - Modern Task Management System</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: #333;
+    }
+
+    .header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: #667eea;
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #667eea;
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #667eea;
+      padding: 0.8rem 1.5rem;
+      border: 2px solid #667eea;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: #667eea;
+      color: white;
+    }
+
+    .hero-section {
+      padding: 4rem 2rem;
+      text-align: center;
+      color: white;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .features-section {
+      padding: 4rem 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+    }
+
+    .features-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 3rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: white;
+      font-size: 2rem;
+    }
+
+    .feature-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .feature-description {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .cta-section {
+      padding: 4rem 2rem;
+      text-align: center;
+      color: white;
+    }
+
+    .cta-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .cta-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .footer {
+      background: rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      text-align: center;
+      color: white;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="header">
-    <div class="header-left">
-      <img src="/img/logo.png" alt="Logo" class="logo" />
-      <h2>5 Days crash course on Fullstcak web-developmetn</h2>
-    </div>
-    <div class="nav-links">
-      <a href="/login" class="btn-logout">Login</a>
-      <a href="/signup" class="btn-logout">SignUp</a>
+    <div class="header-content">
+      <a href="/" class="logo">
+        <i class="fas fa-tasks"></i>
+        TaskFlow
+      </a>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="/login" class="btn-secondary">Login</a>
+        <a href="/signup" class="btn-primary">Get Started</a>
+      </nav>
     </div>
   </header>
 
+  <section class="hero-section">
+    <h1 class="hero-title">
+      Organize Your Life, <br>
+      <span style="color: #20bf6b;">One Task at a Time</span>
+    </h1>
+    <p class="hero-subtitle">
+      Streamline your workflow with our intuitive task management system. 
+      Stay organized, boost productivity, and achieve your goals with ease.
+    </p>
+    <div class="hero-buttons">
+      <a href="/signup" class="btn-primary">
+        <i class="fas fa-rocket"></i> Get Started Free
+      </a>
+      <a href="/login" class="btn-secondary">
+        <i class="fas fa-sign-in-alt"></i> Sign In
+      </a>
+    </div>
+  </section>
 
-  <main class="main-content">
-    <button class="open-btn">Open Registration</button>
-
-
-    <div class="card-container">
-      <!-- Card 1 -->
-      <div class="card">
-        <h3>🧭 Departments</h3>
-        <div class="description">This shows the registration percent of each department.</div>
-        <div class="legend">
-          <div><span class="dot" style="background-color:#00008B;"></span> DOMS</div>
-          <div><span class="dot" style="background-color:#00BFFF;"></span> DOAH</div>
-          <div><span class="dot" style="background-color:#00CED1;"></span> DOSS</div>
+  <section class="features-section" id="features">
+    <div class="features-container">
+      <h2 class="section-title">Why Choose TaskFlow?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-columns"></i>
+          </div>
+          <h3 class="feature-title">Kanban Board</h3>
+          <p class="feature-description">
+            Visualize your workflow with our intuitive Kanban board. 
+            Drag and drop tasks between columns to track progress effortlessly.
+          </p>
         </div>
-        <div class="progress-circle">
-          <span>73%</span>
-        </div>
-        <div class="count">🕒 Count: ****</div>
-      </div>
 
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="feature-title">Progress Tracking</h3>
+          <p class="feature-description">
+            Monitor your productivity with detailed analytics and progress reports. 
+            Stay motivated by seeing your achievements.
+          </p>
+        </div>
 
-      <!-- Card 2 -->
-      <div class="card">
-        <h3>👥 Students</h3>
-        <div class="description">This shows the registration percent of students.</div>
-        <div class="legend">
-          <div><span class="dot" style="background-color:#00008B;"></span> Year I</div>
-          <div><span class="dot" style="background-color:#00BFFF;"></span> Year II</div>
-          <div><span class="dot" style="background-color:#00CED1;"></span> Year III</div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-bell"></i>
+          </div>
+          <h3 class="feature-title">Smart Reminders</h3>
+          <p class="feature-description">
+            Never miss a deadline with intelligent reminders and notifications. 
+            Stay on top of your tasks with timely alerts.
+          </p>
         </div>
-        <div class="progress-circle">
-          <span>77%</span>
-        </div>
-        <div class="count">🕒 Count: ****</div>
-      </div>
 
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3 class="feature-title">Team Collaboration</h3>
+          <p class="feature-description">
+            Work together seamlessly with team features. 
+            Share tasks, assign responsibilities, and track team progress.
+          </p>
+        </div>
 
-      <!-- Card 3 -->
-      <div class="card">
-        <h3>👨‍🏫 Faculty</h3>
-        <div class="description">This shows the registration percent of the staff.</div>
-        <div class="legend">
-          <div><span class="dot" style="background-color:#00BFFF;"></span> Teaching</div>
-          <div><span class="dot" style="background-color:#00CED1;"></span> Non-teaching</div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3 class="feature-title">Mobile Friendly</h3>
+          <p class="feature-description">
+            Access your tasks anywhere, anytime. 
+            Our responsive design works perfectly on all devices.
+          </p>
         </div>
-        <div class="progress-circle">
-          <span>63%</span>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="feature-title">Secure & Private</h3>
+          <p class="feature-description">
+            Your data is safe with us. 
+            Enterprise-grade security ensures your tasks remain private and secure.
+          </p>
         </div>
-        <div class="count">🕒 Count: ****</div>
       </div>
     </div>
-  </main>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-container">
+      <h2 class="cta-title">Ready to Boost Your Productivity?</h2>
+      <p class="cta-subtitle">
+        Join thousands of users who have transformed their workflow with TaskFlow. 
+        Start organizing your tasks today!
+      </p>
+      <div class="hero-buttons">
+        <a href="/signup" class="btn-primary">
+          <i class="fas fa-rocket"></i> Start Free Trial
+        </a>
+        <a href="/login" class="btn-secondary">
+          <i class="fas fa-sign-in-alt"></i> Sign In
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="/login">Login</a>
+        <a href="/signup">Sign Up</a>
+        <a href="#features">Features</a>
+      </div>
+      <p>&copy; 2024 TaskFlow. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
